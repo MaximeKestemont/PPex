@@ -2,11 +2,20 @@
 <html>
 <head>
   <title>PPex</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <div class="hero-unit text-center">
+      <h1>ToDo<h1>
+      <p>Welcome to PPex</p>
+    </div>
+  </div>
+</div>
 
 <%= yield %>
 

@@ -38,4 +38,13 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # which host is going to be used while converting the relative paths in our emails to absolute ones
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # the protocol to be used
+  config.action_mailer.delivery_method = :smtp
+
+  # sets the settings of the smtp server
+  config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
 end

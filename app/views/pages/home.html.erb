@@ -1,0 +1,27 @@
+<div>
+  <% if @users.empty? %>
+     <span class ="text-warning">There are no PPexer!</span>
+  <% else %>
+  	 <span class ="text-warning">There are PPexers!</span>
+  	 <table class ="table table-bordered table-hover">
+  	 	<head>
+  	 		<tr>
+  	 			<th> Name </th>
+  	 			<th> Email </th>
+  	 		</tr>
+  	 	</head>
+
+  	 	<body>
+  	 		<% @users.each do |user| %>
+  	 			<tr>
+  	 				<td><strong> <%= user.id %> </strong></td>
+  	 				<td class="text-info"> <%= user.email %> </td>
+  	 			</tr>
+  	 		<% end %>
+  	 	</body>
+
+  	 </table>
+
+  <% end %>
+
+</div>
