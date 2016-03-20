@@ -8,6 +8,7 @@
   	 		<tr>
   	 			<th> Name </th>
   	 			<th> Email </th>
+  	 			<th> Class </th>
   	 		</tr>
   	 	</head>
 
@@ -16,12 +17,15 @@
   	 			<tr>
   	 				<td><strong> <%= user.id %> </strong></td>
   	 				<td class="text-info"> <%= user.email %> </td>
+  	 				<td class="text-info"> <%= user.user_profile.profile_class %> </td>
   	 			</tr>
   	 		<% end %>
   	 	</body>
-
   	 </table>
 
+
+  	 <div class="text-center">Current user: <strong><%= current_user.email %></strong></div>
+     <div class="text-center"><strong><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
   <% end %>
 
 </div>
