@@ -8,13 +8,21 @@ class UserProfilesController < ApplicationController
   		 @user_profile.user_id = current_user.id
   		 #authorize! :create, @user_profile
 		 save_profile
+		 render :'pages/home'
 	end
 
 	def destroy
 	end
 
  	def edit
-
+ 		@user_profile = UserProfile.find(params[:id])
+ 		if ( @user_profile.experience )
+ 			@user_profile.experience = @user_profile.experience + 1
+ 		else 
+ 			@user_profile.experience = 0
+ 		end
+ 		save_profile
+ 		render :'pages/home'
 	end
 
 	def update
@@ -26,7 +34,6 @@ class UserProfilesController < ApplicationController
   	def save_profile
 		@user_profile.save
 		@users = User.all
-		render :'pages/home'
   	end
 
   	def user_profile_params
