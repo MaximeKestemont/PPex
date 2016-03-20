@@ -1,0 +1,15 @@
+<div>
+	<h2>Create a profile</h2>
+	<%= @user_profile.user_id %>
+
+
+ 	<%= simple_form_for @user_profile, class: 'clearfix' do |p| %>
+ 		<div class="modal-body">
+ 			 <%= p.input :name %>
+ 			 <%= p.input :profile_class %>
+ 		</div>
+ 		<div class="modal-footer">
+        	<%= p.submit 'Save', class: 'btn btn-primary' %>
+      	</div>
+ 	<% end %>
+</div>

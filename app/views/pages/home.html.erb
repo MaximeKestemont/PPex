@@ -1,31 +1,45 @@
+<!-- If no profile yet for the user -->
 <div>
-  <% if @users.empty? %>
-     <span class ="text-warning">There are no PPexer!</span>
+	<% if !current_user.user_profile %>
+		<h2>Create a profile</h2>
+		<strong><%= link_to 'New profile', new_user_profile_path, class: 'btn btn-primary' %></strong>
+
   <% else %>
-  	 <span class ="text-warning">There are PPexers!</span>
-  	 <table class ="table table-bordered table-hover">
-  	 	<head>
-  	 		<tr>
-  	 			<th> Name </th>
-  	 			<th> Email </th>
-  	 			<th> Class </th>
-  	 		</tr>
-  	 	</head>
 
-  	 	<body>
-  	 		<% @users.each do |user| %>
-  	 			<tr>
-  	 				<td><strong> <%= user.id %> </strong></td>
-  	 				<td class="text-info"> <%= user.email %> </td>
-  	 				<td class="text-info"> <%= user.user_profile.profile_class %> </td>
-  	 			</tr>
-  	 		<% end %>
-  	 	</body>
-  	 </table>
-
-
-  	 <div class="text-center">Current user: <strong><%= current_user.email %></strong></div>
-     <div class="text-center"><strong><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
-  <% end %>
-
+    <!-- Temporary block -->
+    <div>
+      <% if @users.empty? %>
+         <span class ="text-warning">There are no PPexer!</span>
+      <% else %>
+         <span class ="text-warning">There are PPexers!</span>
+         <table class ="table table-bordered table-hover">
+          <head>
+            <tr>
+              <th> Name </th>
+              <th> Email </th>
+              <th> Class </th>
+            </tr>
+          </head>
+    
+          <body>
+            <% @users.each do |user| %>
+              <tr>
+                <td><strong> <%= user.id %> </strong></td>
+                <td class="text-info"> <%= user.email %> </td>
+                <td class="text-info"> <%= user.user_profile.profile_class %> </td>
+              </tr>
+            <% end %>
+          </body>
+         </table>
+    
+    
+         <div class="text-center">Current user: <strong><%= current_user.email %></strong></div>
+         <div class="text-center"><strong><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'btn btn-primar' %>
+      <% end %>
+    
+    </div>
+	<% end %>
 </div>
+
+
+
