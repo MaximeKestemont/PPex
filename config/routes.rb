@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users
-  resources :user_profiles
+  resources :user_profiles do
+    member do
+      get 'add_experience'
+    end
+  end
 
 
 
