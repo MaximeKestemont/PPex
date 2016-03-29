@@ -8,9 +8,20 @@
 
     <!-- Temporary block -->
     <div>
+
+      <div>
       <% if @users.empty? %>
          <span class ="text-warning">There are no PPexer!</span>
       <% else %>
+                     
+        <% current_user.user_profile.profile_class.each do |profile_class| %>
+          <tr> 
+            <td> <%= profile_class.className %> </td> 
+            <td> <%= profile_class.experience %> </td> 
+          </tr>
+        <% end %>
+      </div>
+              
          <span class ="text-warning">There are PPexers!</span>
          <table class ="table table-bordered table-hover">
           <head>
@@ -20,7 +31,6 @@
               <th> Class </th>
               <th> Experience </th>
               <th> Actions </th>
-              <th> TO REMOVE </th>
             </tr>
           </head>
     
@@ -35,17 +45,13 @@
                   <%= link_to add_experience_user_profile_path(user.user_profile) do %> 
                   <i class="glyphicon glyphicon-plus"></i> 
                   <% end %>
-                <td> 
-                  <% user.user_profile.profile_class.each do |profile_class| %>
-                    <tr> <td> <%= profile_class.className %> </td> </tr>
-                  <% end %>
-                </td>
+
               </tr>
             <% end %>
           </body>
          </table>
     
-    
+
          <div class="text-center">Current user: <strong><%= current_user.email %></strong></div>
          <div class="text-center"><strong><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'btn btn-primar' %>
       <% end %>
