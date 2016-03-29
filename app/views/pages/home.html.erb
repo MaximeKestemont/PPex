@@ -20,6 +20,7 @@
               <th> Class </th>
               <th> Experience </th>
               <th> Actions </th>
+              <th> TO REMOVE </th>
             </tr>
           </head>
     
@@ -34,6 +35,11 @@
                   <%= link_to add_experience_user_profile_path(user.user_profile) do %> 
                   <i class="glyphicon glyphicon-plus"></i> 
                   <% end %>
+                <td> 
+                  <% user.user_profile.profile_class.each do |profile_class| %>
+                    <tr> <td> <%= profile_class.className %> </td> </tr>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </body>

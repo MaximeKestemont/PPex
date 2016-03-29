@@ -8,8 +8,19 @@ class UserProfilesController < ApplicationController
   		 #@user_profile.user_id = current_user.id
   		 #authorize! :create, @user_profile
 		 #@user_profile.save!
-		 current_user.create_user_profile(user_profile_params)
- 		 redirect_to home_path
+		 logger.debug "TEST"
+		 user_profile = current_user.create_user_profile(user_profile_params)
+		 class1 = user_profile.profile_class.new
+		 class1.className = "Warrior"
+		 class1.experience = 0
+		 class1.save
+
+		 class2 = user_profile.profile_class.new
+		 class2.className = "Archer"
+		 class2.experience = 0
+		 class2.save
+		 
+ 		 redirect_to root_path
 	end
 
 	def destroy
@@ -37,7 +48,7 @@ class UserProfilesController < ApplicationController
   	private
 
   	def user_profile_params
-    	params.require(:user_profile).permit(:name, :user_id, :profile_class)
+    	params.require(:user_profile).permit(:name, :user_id)
   	end
 
 end
