@@ -19,7 +19,7 @@ class UserProfilesController < ApplicationController
 		 class2.className = "Archer"
 		 class2.experience = 0
 		 class2.save
-		 
+
  		 redirect_to root_path
 	end
 
@@ -38,6 +38,17 @@ class UserProfilesController < ApplicationController
  			user_profile.experience = 0
  		end
  		user_profile.save!
+ 		redirect_to :back
+	end
+
+	def add_experience_to_class
+		profile_class = ProfileClass.find(params[:id])
+ 		if profile_class.experience
+ 			profile_class.experience = profile_class.experience + 1
+ 		else 
+ 			profile_class.experience = 0
+ 		end
+ 		profile_class.save!
  		redirect_to :back
 	end
 
