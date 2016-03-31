@@ -42,14 +42,18 @@ class UserProfilesController < ApplicationController
 	end
 
 	def add_experience_to_class
-		profile_class = ProfileClass.find(params[:id])
- 		if profile_class.experience
- 			profile_class.experience = profile_class.experience + 1
+		@profile_class = ProfileClass.find(params[:id])
+		if @profile_class.experience == 99
+			@profile_class.experience = 0
+			@profile_class.level = @profile_class.level + 1
+ 		elsif @profile_class.experience
+ 			@profile_class.experience = @profile_class.experience + 1
  		else 
- 			profile_class.experience = 0
+ 			@profile_class.experience = 0
  		end
- 		profile_class.save!
- 		redirect_to :back
+ 		@profile_class.save!
+ 		render :update_experience_bar
+ 		#redirect_to :back
 	end
 
 	def update

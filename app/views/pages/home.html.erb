@@ -15,21 +15,14 @@
       <% else %>
                      
         <% current_user.user_profile.profile_class.each do |profile_class| %>
-          <tr> 
-            <td> <%= profile_class.className %> </td> 
-            <td> <%= profile_class.experience %> </td> 
-            <td>
-                
-              <%= link_to add_experience_to_class_user_profile_path(profile_class) do %> 
-                  <i class="glyphicon glyphicon-plus"></i> 
-              <% end %></td> 
-            <td>
-             <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<%= profile_class.experience %>%">
-              </div>
-              </div>
-            </td>
-          </tr>
+          
+            <%= profile_class.className %>   
+          
+            <%= link_to add_experience_to_class_user_profile_path(profile_class), remote: true do %> 
+              <i class="glyphicon glyphicon-plus"></i> 
+            <% end %>
+            <%= render partial: 'application/button_experience', locals: {profile_class: profile_class} %>
+          
         <% end %>
       </div>
               

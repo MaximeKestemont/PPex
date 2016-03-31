@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329192938) do
+ActiveRecord::Schema.define(version: 20160331195129) do
 
   create_table "profile_classes", force: :cascade do |t|
     t.string   "className"
     t.integer  "experience"
     t.integer  "user_profile_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "level",           default: 0
   end
 
   create_table "user_profiles", force: :cascade do |t|
