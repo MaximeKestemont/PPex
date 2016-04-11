@@ -27,7 +27,12 @@
                 <i class="icon-remove"></i> 
               <% end %>
 
-              <%= link_to find_then_add_experience_to_class_user_profile_path(current_user.user_profile,:className => video.class_required,:experience_gain => video.experience), remote: true do %> 
+              <%= link_to find_then_add_experience_to_class_user_profile_path(
+                current_user.user_profile,
+                :className => video.class_required,
+                :experience_gain => video.experience,
+                :level_required => video.level_required
+                ), remote: true do %> 
                 <i class="glyphicon glyphicon-plus"></i> 
               <% end %>
             </td>

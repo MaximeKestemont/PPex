@@ -67,6 +67,12 @@ class UserProfilesController < ApplicationController
 
 		# add_experience_to_class(profile_class.id)	TODO DOES NOT WORK, WHY???
 
+		# check the level required is met by the user
+		if @profile_class.level < params[:level_required].to_i
+			raise "error"
+			# TODO catch error in the view
+		end
+
 		# get experience and convert it to integer
 		experience_gain = params[:experience_gain].to_i
 
