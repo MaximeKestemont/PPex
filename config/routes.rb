@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get 'add_experience'
       get 'add_experience_to_class'
+      get 'find_then_add_experience_to_class'
     end
   end
 

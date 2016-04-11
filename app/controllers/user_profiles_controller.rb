@@ -41,6 +41,7 @@ class UserProfilesController < ApplicationController
  		redirect_to :back
 	end
 
+	# Add experience to a specific class
 	def add_experience_to_class
 		@profile_class = ProfileClass.find(params[:id])
 		if @profile_class.experience == 99
@@ -53,7 +54,32 @@ class UserProfilesController < ApplicationController
  		end
  		@profile_class.save!
  		render :update_experience_bar
- 		#redirect_to :back
+	end
+
+	# Find the class based on the className, then add experience to it
+	def find_then_add_experience_to_class
+		user_profile = UserProfile.find(params[:id])
+
+		# TODO pattern matching to find the class with the correct name
+		#logger.debug user_profile.profile_class
+
+		@profile_class = ProfileClass.find_by className: params[:className], user_profile_id: user_profile.id
+
+		# add_experience_to_class(profile_class.id)	TODO DOES NOT WORK, WHY???
+
+		# get experience and convert it to integer
+		experience_gain = params[:experience_gain].to_i
+
+		if @profile_class.experience >= 100-experience_gain
+			@profile_class.experience = @profile_class.experience + experience_gain - 100
+			@profile_class.level = @profile_class.level + 1
+ 		elsif @profile_class.experience
+ 			@profile_class.experience = @profile_class.experience + experience_gain
+ 		else 
+ 			@profile_class.experience = 0
+ 		end
+ 		@profile_class.save!
+ 		render :update_experience_bar
 	end
 
 	def update
