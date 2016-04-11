@@ -1,0 +1,8 @@
+m = $('#modal_video');
+m.html('<%= j(render partial: 'add_video_form', locals: {video: @video}) %>');
+m.modal('show').css({
+    'margin-left': function () { //Horizontal centering
+        return ($(this).width() / 2);
+    }
+});
+//$('#modal').integrateDatepicker();

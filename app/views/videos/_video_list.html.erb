@@ -1,0 +1,36 @@
+  <% if videos.empty? %>
+     <span class ="text-warning">There are no videos!</span>
+  <% else %>
+  	 <span class ="text-warning">There are videos !</span>
+
+     <p>Search icon: <span class="glyphicon glyphicon-search"></span></p>
+     <table class ="table table-bordered table-hover">
+      <head>
+        <tr>
+          <th> Title </th>
+          <th> Level required </th>
+          <th> Class required </th>
+          <th> Experience gain </th>
+          <th> Action </th>
+        </tr>
+      </head>
+
+      <body>
+        <% videos.each do |video| %>
+          <tr>
+            <td><strong> <%= video.title %> </strong></td>
+            <td><strong> <%= video.level_required %> </strong></td>
+            <td><strong> <%= video.class_required %> </strong></td>
+            <td><strong> <%= video.experience %> </strong></td>
+            <td> 
+              <%= link_to video_path(video), method: :delete, data: {confirm: "Are you sure you want to delete video #{video.title}?"}, remote: true do %> 
+                <i class="icon-remove"></i> 
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </body>
+
+     </table>
+     
+  <% end %>

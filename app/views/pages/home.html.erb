@@ -13,10 +13,12 @@
       <% if @users.empty? %>
          <span class ="text-warning">There are no PPexer!</span>
       <% else %>
-                     
+        
+        <div> User : <%= current_user.user_profile.name %> </div>
+
         <% current_user.user_profile.profile_class.each do |profile_class| %>
           
-            <%= profile_class.className %>   
+            Class : <%= profile_class.className %>   
           
             <%= link_to add_experience_to_class_user_profile_path(profile_class), remote: true do %> 
               <i class="glyphicon glyphicon-plus"></i> 
@@ -24,7 +26,14 @@
             <%= render partial: 'application/button_experience', locals: {profile_class: profile_class} %>
           
         <% end %>
+
       </div>
+
+      <div id="video-list" class="container">
+        <%= render partial: 'videos/video_list', locals: {videos: @videos} %>
+      </div>
+
+
               
          <span class ="text-warning">There are PPexers!</span>
          <table class ="table table-bordered table-hover">
@@ -59,8 +68,15 @@
          <div class="text-center">Current user: <strong><%= current_user.email %></strong></div>
          <div class="text-center"><strong><%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: 'btn btn-primar' %>
       <% end %>
-    
+  
     </div>
+      <strong><%= link_to 'Add a new video', new_video_path, class: 'btn btn-primary', remote: true %></strong>
+    </div>
+
+    <div id="modal_video" class="modal fade">
+    </div>
+
+
 	<% end %>
 </div>
 
